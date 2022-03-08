@@ -51,13 +51,25 @@ var coffees = [
 ];
 
 var tbody = document.querySelector('#coffees');
-
 var submitButton = document.querySelector('#submit');
-submitButton.addEventListener('click',updateCoffees);
-/*
-var searchEntry = document.querySelector()
-*/
-
 var roastSelection = document.querySelector('#roast-selection');
 
 tbody.innerHTML = renderCoffees(coffees);
+
+submitButton.addEventListener('click',updateCoffees);
+
+/*Function to filter based on text entry into "Enter name here" box*/
+function searchAfterTextEntry () {
+    var coffeeTextSearch = searchEntry.value.toUpperCase();
+    var coffeeTextSearchResult = [];
+    coffees.forEach(function(coffee) {
+        if (coffee.name.toUpperCase().includes(coffeeTextSearch)) {
+            coffeeTextSearchResult.push(coffee);
+        }
+    });
+    tbody.innerHTML = renderCoffees(coffeeTextSearchResult);
+}
+
+/*Selector and event listener for 'searchAfterTextEntry' function*/
+var searchEntry = document.querySelector('#searchEntry');
+searchEntry.addEventListener('keyup',searchAfterTextEntry);
