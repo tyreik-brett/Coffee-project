@@ -1,20 +1,23 @@
 "use strict"
 
 function renderCoffee(coffee) {
-    var html = '<ul class="coffee">';
-    // html += '<div>' + coffee.id + '</div>';
-    html += '<li>' + coffee.name + '</li>';
-    html += '<li>' + coffee.roast + '<li/>';
+    var html = '<div class="coffee">';
+    html += '<div>' + coffee.id + '</div>';
+    html += '<div>' + coffee.name + '</div>';
+    html += '<div>' + coffee.roast + '</div>';
+    html += '<div>';
     return html;
 }
 
 function renderCoffees(coffees) {
     var html = '';
-    for (var i = 0; i < coffees.length; i++) {
+    for(var i = 0; i < coffees.length; i++) {
         html += renderCoffee(coffees[i]);
     }
     return html;
 }
+
+// ***************finished with above^^^^^^^^^^
 
 function updateCoffees(e) {
     e.preventDefault(); // don't submit the form, we just want to update the data
