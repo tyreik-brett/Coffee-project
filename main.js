@@ -85,4 +85,4 @@ function searchAfterTextEntry () {
 /*Selector and event listener for 'searchAfterTextEntry' function*/
 var searchEntry = document.querySelector('#searchEntry');
 searchEntry.addEventListener('keyup',searchAfterTextEntry);
-
+searchEntry.addEventListener('keyup',searchAfterTextEntry);
