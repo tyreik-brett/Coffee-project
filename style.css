@@ -1,10 +1,5 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');*/
 
-ul {
-    list-style-type: none;
-    display: inline-flex;
-    justify-content: space-around;
-}
 
 /*h1{*/
 /*    margin: 10px;*/
@@ -13,16 +8,10 @@ ul {
 
 /*p{*/
 /*    margin: 10px;*/
-/*}*/
+/
 
-form {
-    box-sizing: border-box;
-    position: absolute;
-    top: 50px;
 
-}
-
-* {
+{
     margin: 0;
     padding: 0;
     box-sizing: border-box;

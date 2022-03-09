@@ -2,9 +2,8 @@
 
 function renderCoffee(coffee) {
     var html = '<div class="coffee">';
-    html += '<div>' + coffee.id + '</div>';
-    html += '<div>' + coffee.name + '</div>';
-    html += '<div>' + coffee.roast + '</div>';
+    html += '<h1>' + coffee.name + '</h1>';
+    html += '<p>' + coffee.roast + '</p>';
     html += '<div>';
     return html;
 }
@@ -68,4 +67,22 @@ function filterSelection(c) {
         if (x[i].className.indexOf(c) > -1) AddClass(x[i], "show");
     }
 }
+
+submitButton.addEventListener('click',updateCoffees);
+
+/*Function to filter based on text entry into "Enter name here" box*/
+function searchAfterTextEntry () {
+    var coffeeTextSearch = searchEntry.value.toUpperCase();
+    var coffeeTextSearchResult = [];
+    coffees.forEach(function(coffee) {
+        if (coffee.name.toUpperCase().includes(coffeeTextSearch)) {
+            coffeeTextSearchResult.push(coffee);
+        }
+    });
+    tbody.innerHTML = renderCoffees(coffeeTextSearchResult);
+}
+
+/*Selector and event listener for 'searchAfterTextEntry' function*/
+var searchEntry = document.querySelector('#searchEntry');
+searchEntry.addEventListener('keyup',searchAfterTextEntry);
 
