@@ -2,11 +2,9 @@
 
 function renderCoffee(coffee) {
     var html = '<div class="coffee">';
-    //html += '<div>' + coffee.id + '</div>';
     html += '<h1>' + coffee.name + '</h1>';
     html += '<p>' + coffee.roast + '</p>';
     html += '<div>';
-
     return html;
 }
 
@@ -24,7 +22,7 @@ function updateCoffees(e) {
     e.preventDefault(); // don't submit the form, we just want to update the data
     var selectedRoast = roastSelection.value;
     var filteredCoffees = [];
-    coffees.forEach(function(coffee) {
+    coffees.forEach(function (coffee) {
         if (coffee.roast === selectedRoast) {
             filteredCoffees.push(coffee);
         }
@@ -56,6 +54,20 @@ var roastSelection = document.querySelector('#roast-selection');
 
 tbody.innerHTML = renderCoffees(coffees);
 
+submitButton.addEventListener('click', updateCoffees);
+
+filterSelection("all")
+
+function filterSelection(c) {
+    var x, i;
+    x = document.getElementsByClassName("filterDiv");
+    if (c == "all") c = "";
+    for (i = 0; i < x.length; i++) {
+        RemoveClass(x[i], "show");
+        if (x[i].className.indexOf(c) > -1) AddClass(x[i], "show");
+    }
+}
+
 submitButton.addEventListener('click',updateCoffees);
 
 /*Function to filter based on text entry into "Enter name here" box*/
@@ -73,3 +85,4 @@ function searchAfterTextEntry () {
 /*Selector and event listener for 'searchAfterTextEntry' function*/
 var searchEntry = document.querySelector('#searchEntry');
 searchEntry.addEventListener('keyup',searchAfterTextEntry);
+
