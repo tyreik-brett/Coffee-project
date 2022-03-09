@@ -23,7 +23,10 @@ function updateCoffees(e) {
     var selectedRoast = roastSelection.value;
     var filteredCoffees = [];
     coffees.forEach(function (coffee) {
-        if (coffee.roast === selectedRoast) {
+        if (roastSelection.value === "Show all") {
+            filteredCoffees.push(coffee);
+        }
+        else if (coffee.roast === selectedRoast) {
             filteredCoffees.push(coffee);
         }
     });
@@ -84,5 +87,4 @@ function searchAfterTextEntry () {
 
 /*Selector and event listener for 'searchAfterTextEntry' function*/
 var searchEntry = document.querySelector('#searchEntry');
-searchEntry.addEventListener('keyup',searchAfterTextEntry);
 searchEntry.addEventListener('keyup',searchAfterTextEntry);
