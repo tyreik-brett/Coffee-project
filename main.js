@@ -1,10 +1,10 @@
 "use strict"
 
 function renderCoffee(coffee) {
-    var html = '<div class="coffee">';
-    html += '<h1>' + coffee.name + '</h1>';
+    var html = '<div class="coffee d-block col-12 col-md-4 mx-auto p-auto">';
+    html += '<h2>' + coffee.name + '</h2>';
     html += '<p>' + coffee.roast + '</p>';
-    html += '<div>';
+    html += '</div>';
     return html;
 }
 
@@ -16,8 +16,6 @@ function renderCoffees(coffees) {
     return html;
 }
 
-// ***************finished with above^^^^^^^^^^
-
 function updateCoffees(e) {
     e.preventDefault(); // don't submit the form, we just want to update the data
     var selectedRoast = roastSelection.value;
@@ -25,15 +23,24 @@ function updateCoffees(e) {
     coffees.forEach(function (coffee) {
         if (roastSelection.value === "Show all") {
             filteredCoffees.push(coffee);
-        }
-        else if (coffee.roast === selectedRoast) {
+        } else if (coffee.roast === selectedRoast) {
             filteredCoffees.push(coffee);
         }
     });
     tbody.innerHTML = renderCoffees(filteredCoffees);
 }
 
-// from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
+function searchAfterTextEntry () {
+    var coffeeTextSearch = searchEntry.value.toUpperCase();
+    var filteredCoffees = [];
+    coffees.forEach(function(coffee) {
+        if (coffee.name.toUpperCase().includes(coffeeTextSearch)) {
+            filteredCoffees.push(coffee);
+        }
+    });
+    tbody.innerHTML = renderCoffees(filteredCoffees);
+}
+
 var coffees = [
     {id: 1, name: 'Light City', roast: 'light'},
     {id: 2, name: 'Half City', roast: 'light'},
@@ -54,37 +61,8 @@ var coffees = [
 var tbody = document.querySelector('#coffees');
 var submitButton = document.querySelector('#submit');
 var roastSelection = document.querySelector('#roast-selection');
+var searchEntry = document.querySelector('#searchEntry');
 
 tbody.innerHTML = renderCoffees(coffees);
-
-submitButton.addEventListener('click', updateCoffees);
-
-filterSelection("all")
-
-function filterSelection(c) {
-    var x, i;
-    x = document.getElementsByClassName("filterDiv");
-    if (c == "all") c = "";
-    for (i = 0; i < x.length; i++) {
-        RemoveClass(x[i], "show");
-        if (x[i].className.indexOf(c) > -1) AddClass(x[i], "show");
-    }
-}
-
 submitButton.addEventListener('click',updateCoffees);
-
-/*Function to filter based on text entry into "Enter name here" box*/
-function searchAfterTextEntry () {
-    var coffeeTextSearch = searchEntry.value.toUpperCase();
-    var coffeeTextSearchResult = [];
-    coffees.forEach(function(coffee) {
-        if (coffee.name.toUpperCase().includes(coffeeTextSearch)) {
-            coffeeTextSearchResult.push(coffee);
-        }
-    });
-    tbody.innerHTML = renderCoffees(coffeeTextSearchResult);
-}
-
-/*Selector and event listener for 'searchAfterTextEntry' function*/
-var searchEntry = document.querySelector('#searchEntry');
 searchEntry.addEventListener('keyup',searchAfterTextEntry);
